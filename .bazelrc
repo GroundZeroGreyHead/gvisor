@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Force the background JVM server to have enough memory overhead
+startup --host_jvm_args=-Xmx6g
+startup --host_jvm_args=-Xms2g
+
+# Tighten the concurrency execution limits using modern consolidated keys
+build --local_resources=cpu=4
+build --local_resources=memory=8000
+build --jobs=4
+
 # Ensure a strong hash function.
 startup --host_jvm_args=-Dbazel.DigestFunction=SHA256
 
